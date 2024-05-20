@@ -1,0 +1,35 @@
+<h2>Loan List</h2>
+
+<!-- Add New Loan Form -->
+<form (submit)="addLoan()">
+  <label for="loanNumber">Loan Number:</label>
+  <input type="text" id="loanNumber" name="loanNumber" [(ngModel)]="newLoanData['loanNumber']" required>
+
+  <label for="loanType">Loan Type:</label>
+  <input type="text" id="loanType" name="loanType" [(ngModel)]="newLoanData['loanType']" required>
+
+  <label for="totalLoan">Total Loan:</label>
+  <input type="number" id="totalLoan" name="totalLoan" [(ngModel)]="newLoanData['totalLoan']" required>
+
+  <label for="amountPaid">Amount Paid:</label>
+  <input type="number" id="amountPaid" name="amountPaid" [(ngModel)]="newLoanData['amountPaid']" required>
+
+  <label for="outstandingAmount">Outstanding Amount:</label>
+  <input type="number" id="outstandingAmount" name="outstandingAmount" [(ngModel)]="newLoanData['outstandingAmount']" required>
+
+  <button type="submit">Add Loan</button>
+</form>
+
+
+<!-- Loan List -->
+<ul>
+  <li *ngFor="let loan of loans">
+    <span>Loan Number: {{ loan['loanNumber'].toString() }}</span>
+    <span>Loan Type: {{ loan['loanType'].toString() }}</span>
+    <span>Total Loan: {{ loan['totalLoan'].toString() }}</span>
+    <span>Amount Paid: {{ loan['amountPaid'].toString() }}</span>
+    <span>Outstanding Amount: {{ loan['outstandingAmount'].toString() }}</span>
+    <button (click)="updateLoan(loan['id'].toString(), loan)">Update</button>
+    <button (click)="deleteLoan(loan['id'].toString())">Delete</button>
+  </li>
+</ul>
